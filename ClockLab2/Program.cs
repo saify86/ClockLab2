@@ -37,7 +37,7 @@ namespace ClockLab2
             StartPosition = FormStartPosition.CenterScreen;
 
             _timer = new WinTimer();
-            _timer.Interval = 1000;
+            _timer.Interval = 50;
             _timer.Tick += (s, e) => Invalidate();
             _timer.Start();
         }
@@ -108,7 +108,9 @@ namespace ClockLab2
 
             double hour = now.Hour % 12 + now.Minute / 60.0;
             double minute = now.Minute + now.Second / 60.0;
-            double second = now.Second;
+            double second = now.Second + now.Millisecond / 1000.0;
+            Debug.WriteLine(second);
+            //double millisecond = now.Millisecond;
             // Преобразование времени в угол для корректного перемещения стрелок
             double hourAngle = (hour * 30 - 90) * Math.PI / 180.0;
             double minuteAngle = (minute * 6 - 90) * Math.PI / 180.0;
